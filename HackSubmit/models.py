@@ -22,13 +22,12 @@ class Hackathon(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
 
     HACKATHON_TYPES = [
-        ('image', 'Image'),
-        ('file', 'File'),
-        ('link', 'Link'),
+        ("image", "Image"),
+        ("file", "File"),
+        ("link", "Link"),
     ]
 
-    type = models.CharField(max_length=10, choices=HACKATHON_TYPES, default='image')
-
+    type = models.CharField(max_length=10, choices=HACKATHON_TYPES, default="image")
 
     def __str__(self):
         return self.title
@@ -36,7 +35,7 @@ class Hackathon(models.Model):
     @property
     def hackathon_duration(self):
         return self.end_date - self.start_date
-    
+
     @property
     def hackathon_duration_days(self):
         return self.hackathon_duration.days
@@ -51,8 +50,3 @@ class Submission(models.Model):
 
     def __str__(self):
         return self.name
-
-    
-
-
-

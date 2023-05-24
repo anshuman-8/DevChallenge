@@ -9,11 +9,13 @@ class HackathonViewSet(viewsets.ModelViewSet):
     queryset = Hackathon.objects.all()
     serializer_class = HackathonSerializer
 
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = HackathonSerializer
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def getHackathons(request):
     hackathons = Hackathon.objects.all()
     # print(hackathons)
@@ -21,9 +23,9 @@ def getHackathons(request):
     return response.Response(serializer.data)
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def createHackathon(request):
-    serializer = HackathonSerializer(data = request.data)
+    serializer = HackathonSerializer(data=request.data)
     print(serializer)
     if serializer.is_valid():
         serializer.save()
