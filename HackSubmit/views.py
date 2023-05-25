@@ -1,12 +1,9 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework import viewsets, response, request
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.authtoken.serializers import AuthTokenSerializer
+from django.views.decorators.csrf import csrf_exempt
 from .models import Hackathon, Submission, User
 from .serializers import (
     HackathonSerializer,
@@ -14,7 +11,7 @@ from .serializers import (
     RegisterSerializer,
     SubmissionSerializer,
 )
-from .decorator import login_required
+from .decorator import auth_verify
 
 
 class HackathonViewSet(viewsets.ModelViewSet):
@@ -26,20 +23,26 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = HackathonSerializer
 
+    
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
+def userDetail(request):
+    user = User.objects.get(id=request.user.id)
+    serializer = UserSerializer(user)
+    return response.Response(serializer.data)
 
-class UserDetailAPI(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (AllowAny,)
 
-    def get(self, request, *args, **kwargs):
-        user = User.objects.get(id=request.user.id)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-
-
-class RegisterUserAPIView(generics.CreateAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def registerUser(request):
+    try:
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(serializer.data)
+    except Exception as e:
+        return response.Response({"error":"User not registered", "message":str(e)})
 
 
 @api_view(["GET"])
@@ -59,14 +62,11 @@ def getHackathon(request, hackathon_id):
         return response.Response({"error": "Hackathon does not exist"})
 
 
-@login_required
 @api_view(["POST"])
+@csrf_exempt
+@auth_verify
 def createHackathon(request):
-    print("data", request.data)
-    print("user", request.user)
-    print("is auth", request.user.is_authenticated)
-    print("is staff", request.user.is_staff)
-    print("request Data: ", request.data)
+    request.data["creator"] = request.user.id
     serializer = HackathonSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save(creator=request.user)
@@ -75,7 +75,7 @@ def createHackathon(request):
         return response.Response(serializer.errors)
 
 
-@login_required
+@auth_verify
 @api_view(["POST"])
 def updateHackathon(request, hackathon_id):
     try:
@@ -91,17 +91,7 @@ def updateHackathon(request, hackathon_id):
         return response.Response({"error": "Hackathon does not exist"})
 
 
-@api_view(["GET"])
-def getHackathon(request, hackathon_id):
-    try:
-        hackathon = Hackathon.objects.get(id=hackathon_id)
-        serializer = HackathonSerializer(hackathon)
-        return response.Response(serializer.data)
-    except Hackathon.DoesNotExist:
-        return response.Response({"error": "Hackathon does not exist"})
-
-
-@login_required
+@auth_verify
 @api_view(["POST"])
 def makeSubmission(request, hackathon_id):
     try:
@@ -110,5 +100,17 @@ def makeSubmission(request, hackathon_id):
         if serializer.is_valid():
             serializer.save(hackathon=hackathon, user=request.user)
             return response.Response(serializer.data)
+    except Hackathon.DoesNotExist:
+        return response.Response({"error": "Hackathon does not exist"})
+
+
+@api_view(["GET"])
+def getSubmissions(request):
+    try:
+        submissions = Submission.objects.filter(
+            hackathon_id=request.data["hackathon_id"]
+        )
+        serializer = SubmissionSerializer(submissions, many=True)
+        return response.Response(serializer.data)
     except Hackathon.DoesNotExist:
         return response.Response({"error": "Hackathon does not exist"})

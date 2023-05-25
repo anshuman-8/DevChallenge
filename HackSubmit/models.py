@@ -2,13 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, User
 
 
-# class User(AbstractUser):
-#     uuid = models.UUIDField(primary_key=True)
-
-#     def __str__(self):
-#         return self.username
-
-
 class Hackathon(models.Model):
     id = models.BigAutoField(primary_key=True, null=False)
     title = models.CharField(max_length=100)
