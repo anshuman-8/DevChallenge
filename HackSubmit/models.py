@@ -1,11 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
 
-HACKATHON_TYPES = [
-        ("image", "Image"),
-        ("file", "File"),
-        ("link", "Link"),
-    ]
 
 class Hackathon(models.Model):
     id = models.BigAutoField(primary_key=True, null=False)
@@ -18,7 +13,13 @@ class Hackathon(models.Model):
     reward = models.CharField(max_length=100, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    participants = models.ManyToManyField(User, related_name="participants")
+    participants = models.ManyToManyField(User, related_name="participants", blank=True)
+
+    HACKATHON_TYPES = [
+        ("image", "Image"),
+        ("file", "File"),
+        ("link", "Link"),
+    ]
     type = models.CharField(max_length=10, choices=HACKATHON_TYPES, default="image")
 
     def __str__(self):
@@ -37,7 +38,6 @@ class Submission(models.Model):
     id = models.BigAutoField(primary_key=True, null=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hackathon = models.ForeignKey(Hackathon, on_delete=models.CASCADE)
-    # submission_type = models.CharField(max_length=100)
     image = models.ImageField(upload_to="submissions/images/", null=True, blank=True)
     file = models.FileField(upload_to="submissions/files/", null=True, blank=True)
     link = models.URLField(null=True, blank=True)
@@ -46,3 +46,14 @@ class Submission(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def submission(self):
+        if self.image:
+            return self.image.url
+        elif self.file:
+            return self.file.url
+        elif self.link:
+            return self.link
+        else:
+            return None

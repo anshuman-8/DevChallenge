@@ -8,10 +8,9 @@ def auth_verify(function):
     @authentication_classes([TokenAuthentication])
     @permission_classes([AllowAny])
     def wrap(request, *args, **kwargs):
-
-        print("sdfsdfsdf :::Sdfsdf", request.user)
         if request.user.is_authenticated:
             return function(request, *args, **kwargs)
         else:
             return response.Response({"error": "Not a valid user"})
+
     return wrap
