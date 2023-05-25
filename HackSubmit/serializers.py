@@ -32,6 +32,7 @@ class HackathonSerializer(serializers.ModelSerializer):
             "type",
             "creator",
             "created_at",
+            "participants",
         ]
 
 

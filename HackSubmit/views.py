@@ -88,6 +88,7 @@ def getRegisteredHackathons(request):
     except Exception as e:
         return response.Response({"error": "Something went wrong", "message": str(e)})
 
+
 @api_view(["GET"])
 @auth_verify
 def getUserSubmissions(request):

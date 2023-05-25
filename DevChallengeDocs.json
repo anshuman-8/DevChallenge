@@ -1,0 +1,277 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "DevChallege",
+    "dateExported": "2023-05-25T18:31:19.838Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "02518d64-7373-4693-b955-da33fda0ecca",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "register",
+            "url": "http://127.0.0.1:8000/api/register/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-25T05:24:47.176Z",
+            "modified": "2023-05-25T12:15:00.112Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"userdev@mail.com\",\n  \"username\": \"dev\",\n  \"first_name\":\"dev\",\n  \"last_name\": \"eloper\",\n  \"password\": \"asdfghjk123\",\n  \"password2\":\"asdfghjk123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "89ff3926-a1af-44d5-82e3-7c75b4ab9973",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "login",
+            "url": "http://127.0.0.1:8000/api/login/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-05-25T05:24:53.411Z",
+            "modified": "2023-05-25T17:19:20.176Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": ""
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\":\"anshuman\",\n  \"password\":\"asdfghjk\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8b7d0feb-5aaa-4fcd-9786-a29e9f75dd9b",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "User Details",
+            "url": "http://127.0.0.1:8000/api/user/",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-05-25T08:25:18.161Z",
+            "modified": "2023-05-25T17:18:47.561Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token b167479a3d9b85ce71cdd7eb2dc752ee3b078c5e"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "79257d38-7cdc-4422-ae8b-48c82273492a",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "User Submissions",
+            "url": "http://127.0.0.1:8000/api/mySubmissions/",
+            "method": "GET",
+            "sortNum": 32500,
+            "created": "2023-05-25T18:24:23.142Z",
+            "modified": "2023-05-25T18:29:15.070Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token b167479a3d9b85ce71cdd7eb2dc752ee3b078c5e"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "75fdc51b-f248-47e7-913b-dff7364e4f57",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "User Hackathons",
+            "url": "http://127.0.0.1:8000/api/myHackathons/",
+            "method": "GET",
+            "sortNum": 35000,
+            "created": "2023-05-25T17:29:07.659Z",
+            "modified": "2023-05-25T18:28:54.722Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token b167479a3d9b85ce71cdd7eb2dc752ee3b078c5e"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "2d9b2ec1-6649-49fd-9a55-49b405aa359b",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "Create Hackathon",
+            "url": "http://127.0.0.1:8000/api/hackathon/create",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-05-25T08:28:40.097Z",
+            "modified": "2023-05-25T17:19:50.520Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token ec3ef69c75b63ce713b99b9ecabd5cea46500f0b"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"WikiMedia Hackathon\",\n  \"description\":\"This is the biggest hackathon in the megacity Mumbai. Register today\",\n  \"start_date\":\"2023-05-23\",\n  \"end_date\":\"2023-05-27\",\n  \"background_image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYh7BSrD6eCnj68W2jg-IQKkf3Wi4hgnmsxQ&usqp=CAU\",\n  \"image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3GOYifbqzv3Lxe7ngH1IEwq6ZXPFlY7Ymjw&usqp=CAU\",\n  \"reward\":\"1000 Cash Prize\",\n  \"type\":\"file\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9c89ab68-8b1e-4fed-b406-12be93857761",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "Get a Hackathon",
+            "url": "http://127.0.0.1:8000/api/hackathon/8",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-05-25T10:22:40.842Z",
+            "modified": "2023-05-25T12:16:38.165Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a7a58932-c2ce-45d4-971a-dcdd67410b1a",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "Get all Hackathons",
+            "url": "http://127.0.0.1:8000/api/hackathons/",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-05-25T10:23:15.797Z",
+            "modified": "2023-05-25T10:23:24.051Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "db318008-b763-45b9-a0fd-1e09a7266341",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "join a hackathon",
+            "url": "http://127.0.0.1:8000/api/hackathon/14/join",
+            "method": "POST",
+            "sortNum": 65000,
+            "created": "2023-05-25T17:21:04.024Z",
+            "modified": "2023-05-25T17:23:43.864Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token b167479a3d9b85ce71cdd7eb2dc752ee3b078c5e"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "de82c360-fd37-4919-a7de-256213c69731",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "edit Hackathon",
+            "url": "http://127.0.0.1:8000/api/hackathon/14/update",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2023-05-25T10:24:29.820Z",
+            "modified": "2023-05-25T17:28:24.190Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token ec3ef69c75b63ce713b99b9ecabd5cea46500f0b"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"The Great Mumbai Hackathon\",\n  \"description\":\"This is the biggest hackathon in the megacity Mumbai. Register NOW!\",\n  \"start_date\":\"2023-05-23\",\n  \"end_date\":\"2023-05-28\",\n  \"background_image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYh7BSrD6eCnj68W2jg-IQKkf3Wi4hgnmsxQ&usqp=CAU\",\n  \"image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3GOYifbqzv3Lxe7ngH1IEwq6ZXPFlY7Ymjw&usqp=CAU\",\n  \"reward\":\"10,000 Rupee Cash Prize\",\n  \"type\":\"file\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "44add08a-56ad-4c24-8421-6296986d9e3f",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "Make Submission",
+            "url": "http://127.0.0.1:8000/api/hackathon/14/submit",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-05-25T13:30:38.301Z",
+            "modified": "2023-05-25T18:26:38.497Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token b167479a3d9b85ce71cdd7eb2dc752ee3b078c5e"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "url",
+                        "value": "https://www.javatpoint.com/django-virtual-environment-setup",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "name",
+                        "value": "Zeta community"
+                    },
+                    {
+                        "name": "summary",
+                        "value": "Lets build great community"
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "file",
+                        "value": "/home/anshuman/Anshu/GSoC/test.ipynb"
+                    },
+                    {
+                        "name": "image",
+                        "value": "/home/anshuman/Pictures/bashJoke.jpeg",
+                        "isDisabled": true
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "9fe37727-b5ac-435f-940e-3ed6343df5c6",
+            "colId": "c8c1f2fe-db37-4580-a2f6-0e280a003fa6",
+            "containerId": "",
+            "name": "Get all Submission of hackathon",
+            "url": "http://127.0.0.1:8000/api/hackathon/8/submissions",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-05-25T15:12:22.671Z",
+            "modified": "2023-05-25T15:14:28.682Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Token d7ef3bac35cdcdc468da3b625e2e138269a58608"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "http://127.0.0.1:8000/api/"
+        }
+    }
+}
