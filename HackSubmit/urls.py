@@ -15,8 +15,9 @@ urlpatterns = [
     path("hackathon/create", views.createHackathon, name="Create Hackathon"),
     path("hackathon/<int:hackathon_id>", views.getHackathon, name="Get Hackathon"),
     path('hackathon/<int:hackathon_id>/update', views.updateHackathon, name='Update Hackathon'),
+    # path("hackathon/<int:hackathon_id>/join", views.joinHackathon, name="Get Hackathon"),
 
     # Submission apis
-    path("hackathon/<int:hackathon_id>/submit", views.makeSubmission, name="Make Submission",),
-    path("hackathon/<int:hackathon_id>/submissions", views.getSubmissions, name="Get Submissions",),
+    path("hackathon/<int:hackathon_id>/submit", views.makeSubmission, name="Make Submission"),
+    path("hackathon/<int:hackathon_id>/submissions", views.getSubmissions, name="Get Submissions")
 ]

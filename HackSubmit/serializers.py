@@ -38,7 +38,7 @@ class HackathonSerializer(serializers.ModelSerializer):
 class SubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
-        fields = ["id", "user", "hackathon", "name", "summary"]
+        fields = ["id", "user", "hackathon", "name", "summary", "image", "file", "link"]
 
 
 class RegisterSerializer(serializers.ModelSerializer):
